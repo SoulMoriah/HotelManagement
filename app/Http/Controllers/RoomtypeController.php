@@ -49,20 +49,19 @@ class RoomtypeController extends Controller
         $data->detail = $request->detail;
         $data->save();
 
-        foreach ($request->file('imgs') as $img) {
-            $imgPath = $img->store('public/imgs');
-            $imgData = new Roomtypeimage;
-            $imgData -> room_type_id=$data->id;
-            $imgData -> img_src = $imgPath;
-            $imgData ->img_alt = $request->title;
-            $imgData->save();
-            /*$photo = $request->file('img');
-            if ($photo) {
-            $chemin="imgs";
-            $photoname = time().'.'.$photo->getClientoriginalExtension();
-            $photo->move($chemin,$photoname);
-            $data ->photo = $photoname;
-            }*/
+        if ($request->has('imgs')) {
+            foreach ($request->file('imgs') as $img) {
+                $imgName = time().rand(1,1000000).'.'.$img->getClientoriginalExtension();
+                $chemin = "imgs";
+                //$imgPath = $img->store('imgs');
+                $imgData = new Roomtypeimage;
+                $imgData -> room_type_id=$data->id;
+                $imgData -> img_src = $imgName;
+                $imgData ->img_alt = $request->title;
+                $img->move($chemin,$imgName);
+                $imgData->save();
+    
+            }
         }
 
         return redirect()->back()->with('success','data added succeffuly');
