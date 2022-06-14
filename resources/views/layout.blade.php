@@ -12,6 +12,12 @@
 
     <title>SB Admin 2 - Blank</title>
 
+    @if (!Session::has('adminData'))
+        <script type="text/javascript">
+            window.location.href="{{url('admin/login')}}";
+        </script>
+    @endif
+
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -102,7 +108,13 @@
                 </div>
             </li>
 
-
+            <!-- logout Master -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('admin/logout')}}">
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -313,7 +325,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{url('admin/logout')}}" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -365,7 +377,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{url('admin/login')}}">Logout</a>
                 </div>
             </div>
         </div>

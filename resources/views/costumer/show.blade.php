@@ -31,7 +31,7 @@
                     </tr>
                     <tr>
                         <th>Photo</th>
-                        <td><img width="100" height="100" src="{{asset('storage/app/'.$data->photo)}}"></td>
+                        <td><img width="100" height="100" src="{{asset('imgs/'.$data->photo)}}"></td>
                     </tr>
                 </table>
             </div>

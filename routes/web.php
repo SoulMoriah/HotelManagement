@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomtypeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CostumerController;
 
@@ -19,6 +20,11 @@ use App\Http\Controllers\CostumerController;
 Route::get('/', function () {
     return view('home');
 });
+
+//admin login
+Route::get('admin/login', [AdminController::class,'login']);
+Route::post('admin/login', [AdminController::class,'check_login']);
+Route::get('admin/logout', [AdminController::class,'logout']);
 
 //admin dashboard
 Route::get('admin', function () {

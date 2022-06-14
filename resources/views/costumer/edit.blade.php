@@ -39,7 +39,7 @@
                         </tr>
                         <tr>
                             <th>Photo</th>
-                            <td><input type="file" name="photo"><input type="hidden" name="prev_photo" value="{{$data->photo}}"><img src="{{asset('storage/app/'.$data->photo)}}"></td>
+                            <td><input type="file" name="photo"><input type="hidden" name="prev_photo" value="{{$data->photo}}"><img width="100" height="100" src="{{asset('imgs/'.$data->photo)}}"></td>
                         </tr>
                         <tr>
                             <th>Address</th>

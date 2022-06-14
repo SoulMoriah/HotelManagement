@@ -50,13 +50,14 @@ class CostumerController extends Controller
         $data->password = sha1($request->password);//sha1 encrypt the password
         $data->mobile = $request->mobile;
         $data->address = $request->address;
-        $data->photo = $request ->file('photo')->store('public/imgs');
-        /*$photo = $request->photo;
+        //$data->photo = $request ->file('photo')->store('public/imgs/');
+        $photo = $request->file('photo');
         if ($photo) {
+            $chemin="imgs";
             $photoname = time().'.'.$photo->getClientoriginalExtension();
-            $request->file->move('public/imgs',$photoname);
+            $photo->move($chemin,$photoname);
             $data ->photo = $photoname;
-        }*/
+        }
         $data->save();
         return redirect()->back()->with('success','data added succeffuly');
     }
@@ -108,7 +109,14 @@ class CostumerController extends Controller
         $data->mobile = $request->mobile;
         $data->address = $request->address;
         if ($request->hasFile('photo')) {
-            $data->photo = $request ->file('photo')->store('public/imgs');
+            //$data->photo = $request ->file('photo')->store('public/imgs');
+            $photo = $request->file('photo');
+            if ($photo) {
+                $chemin="imgs";
+                $photoname = time().'.'.$photo->getClientoriginalExtension();
+                $photo->move($chemin,$photoname);
+                $data ->photo = $photoname;
+            }
         }else {
             $data->photo = $request ->prev_photo;
         }
