@@ -15,7 +15,7 @@
                 <p class="text-success">{{session('success')}}</p>
             @endif
             <div class="table-responsive">
-                <form method="POST" action="{{url('admin/room')}}">
+                <form method="POST" enctype="" action="{{url('admin/room')}}">
                     @csrf
                     <table class="table table-bordered" >
                         <tr>
@@ -32,6 +32,10 @@
                         <tr>
                             <th>Title</th>
                             <td><input type="text" name="title" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <th>Gallery</th>
+                            <td><input type="file" multiple name="imgs[]" /></td>
                         </tr>
                         <tr>
                             <td colspan="2">

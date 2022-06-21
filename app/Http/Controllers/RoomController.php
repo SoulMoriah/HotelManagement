@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RoomType;
 use App\Models\Room;
+use App\Models\RoomImage;
 
 class RoomController extends Controller
 {
@@ -38,10 +39,32 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        $request ->validate([
+            'title'=>'required',
+            'room_type_id'=>'required',
+        ]);
+
         $data= new Room;
         $data->title = $request->title;
         $data->room_type_id = $request->room_type_id;
         $data->save();
+
+        if ($request->has('imgs')) {
+            $i=0;
+            foreach ($request->file('imgs') as $img) {
+                $imgName = time().$i.'.'.$img->getClientoriginalExtension();
+                $chemin = "imgs";
+                //$imgPath = $img->store('imgs');
+                $imgData = new RoomImage;
+                $imgData -> room_id=$data->id;
+                $imgData -> img_src = $imgName;
+                $imgData ->img_alt = $request->title;
+                $img->move($chemin,$imgName);
+                $imgData->save();
+                $i++;
+            }
+        }
+
         return redirect()->back()->with('success','data added succeffuly');
     }
 

@@ -50,8 +50,9 @@ class RoomtypeController extends Controller
         $data->save();
 
         if ($request->has('imgs')) {
+            $i=0;
             foreach ($request->file('imgs') as $img) {
-                $imgName = time().rand(1,1000000).'.'.$img->getClientoriginalExtension();
+                $imgName = time().$i.'.'.$img->getClientoriginalExtension();
                 $chemin = "imgs";
                 //$imgPath = $img->store('imgs');
                 $imgData = new Roomtypeimage;
@@ -60,7 +61,7 @@ class RoomtypeController extends Controller
                 $imgData ->img_alt = $request->title;
                 $img->move($chemin,$imgName);
                 $imgData->save();
-    
+                $i++;
             }
         }
 
