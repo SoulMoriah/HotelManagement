@@ -12,8 +12,5 @@ class Room extends Model
     function RoomType(){
         return $this->belongsTo(RoomType::class,'room_type_id');
     }
-    function RoomImage(){
-        return $this->hasMany(RoomImage::class,'room_image_id');
-    }
 
 }

@@ -10,6 +10,6 @@ class RoomType extends Model
     use HasFactory;
 
     function roomtypeimages(){
-        return $this->hasMany(Roomtypeimage::class,'room_type_image_id');
+        return $this->hasMany(Roomtypeimage::class,'room_type_id');
     }
 }

@@ -48,3 +48,6 @@ Route::get('admin/room/{id}/delete',[RoomController::class,'destroy']);
 //Costumer admin routes
 Route::resource('admin/costumer',CostumerController::class);
 Route::get('admin/costumer/{id}/delete',[CostumerController::class,'destroy']);
+
+//Delete Image 
+Route::get('admin/roomtypeimage/delete/{id}',[RoomtypeController::class,'destroy_image']);

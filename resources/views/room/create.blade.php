@@ -34,10 +34,6 @@
                             <td><input type="text" name="title" class="form-control"></td>
                         </tr>
                         <tr>
-                            <th>Gallery</th>
-                            <td><input type="file" multiple name="imgs[]" /></td>
-                        </tr>
-                        <tr>
                             <td colspan="2">
                                 <input type="submit" class="btn btn-primary" />
                             </td>
