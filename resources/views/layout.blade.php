@@ -108,6 +108,36 @@
                 </div>
             </li>
 
+            <!-- Departement Master -->
+            <li class="nav-item">
+                <a class="nav-link @if(!request()->is('admin/departement*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#departementMaster"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Departement</span>
+                </a>
+                <div id="departementMaster" class="collapse @if(request()->is('admin/departement*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{url('admin/departement/create')}}">Add New</a>
+                        <a class="collapse-item" href="{{url('admin/departement')}}">View all</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Staff Master -->
+            <li class="nav-item">
+                <a class="nav-link @if(!request()->is('admin/staff*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#staffMaster"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-box"></i>
+                    <span>Staff</span>
+                </a>
+                <div id="staffMaster" class="collapse @if(request()->is('admin/staff*')) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{url('admin/staff/create')}}">Add New</a>
+                        <a class="collapse-item" href="{{url('admin/staff')}}">View all</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- logout Master -->
             <li class="nav-item">
                 <a class="nav-link" href="{{url('admin/logout')}}">

@@ -38,7 +38,7 @@
                             <tr>
                                 <td>{{$dat->id}}</td>
                                 <td>{{$dat->title}}</td>
-                                <td>{{$dat->roomtype->title}}</td>
+                                <td>{{$dat->room_type->title}}</td>
                                 <td>
                                     <a href="{{url('admin/room/'.$dat->id)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{url('admin/room/'.$dat->id.'/edit')}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

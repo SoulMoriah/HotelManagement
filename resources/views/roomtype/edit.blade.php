@@ -6,7 +6,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Update Room's types
+            <h6 class="m-0 font-weight-bold text-primary">Update {{$data->title}} Room's types
                 <a href="{{url('admin/roomtype')}}" class="btn btn-primary float-right">List</a>
             </h6>
         </div>
@@ -15,7 +15,7 @@
                 <p class="text-success">{{session('success')}}</p>
             @endif
             <div class="table-responsive">
-                <form method="POST" action="{{url('admin/roomtype/'.$data->id)}}">
+                <form enctype="multipart/form-data" method="POST" action="{{url('admin/roomtype/'.$data->id)}}">
                     @csrf
                     @method('put')
                     <table class="table table-bordered" >
@@ -34,8 +34,9 @@
                         <tr>
                             <th>Image's Gallery</th>
                             <td>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered mt-2">
                                     <tr>
+                                        <input type="file" multiple name="imgs[]">
                                         @foreach ($data->roomtypeimages as $img )
                                             <td class="imgcol{{$img->id}}">
                                                 <img src="{{('imgs/'.$img->img_src)}}" height="100" >

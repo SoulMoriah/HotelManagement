@@ -5,6 +5,8 @@ use App\Http\Controllers\RoomtypeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CostumerController;
+use App\Http\Controllers\StaffDepartement;
+use App\Http\Controllers\StaffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +53,18 @@ Route::get('admin/costumer/{id}/delete',[CostumerController::class,'destroy']);
 
 //Delete Image 
 Route::get('admin/roomtypeimage/delete/{id}',[RoomtypeController::class,'destroy_image']);
+
+//Departement routes
+Route::get('admin/departement/{id}/delete',[StaffDepartement::class,'destroy']);
+Route::resource('admin/departement',StaffDepartement::class);
+
+
+//Staff routes
+//Staff Payement
+Route::get('admin/staff/payements/{id}',[StaffController::class,'all_payements']);
+Route::get('admin/staff/payement/{id}/add',[StaffController::class,'add_payement']);
+Route::post('admin/staff/payement/{id}',[StaffController::class,'save_payement']);
+Route::get('admin/staff/payement/{id}/{staff_id}/delete',[StaffController::class,'delete_payement']);
+//Staff CRUD
+Route::get('admin/staff/{id}/delete',[StaffController::class,'destroy']);
+Route::resource('admin/staff',StaffController::class);
