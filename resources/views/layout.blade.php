@@ -108,6 +108,14 @@
                 </div>
             </li>
 
+            <!-- Booking Master -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('admin/booking/create')}}">
+                    <i class="fas fa-hotel"></i>
+                    <span>Booking</span>
+                </a>
+            </li>
+
             <!-- Departement Master -->
             <li class="nav-item">
                 <a class="nav-link @if(!request()->is('admin/departement*')) collapsed @endif" href="#" data-toggle="collapse" data-target="#departementMaster"

@@ -7,6 +7,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\CostumerController;
 use App\Http\Controllers\StaffDepartement;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,8 @@ Route::get('admin/staff/payement/{id}/{staff_id}/delete',[StaffController::class
 //Staff CRUD
 Route::get('admin/staff/{id}/delete',[StaffController::class,'destroy']);
 Route::resource('admin/staff',StaffController::class);
+
+
+//Booking routes
+Route::get('admin/booking/{id}/delete',[BookingController::class,'destroy']);
+Route::resource('admin/booking',BookingController::class);

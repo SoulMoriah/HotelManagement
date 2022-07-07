@@ -6,8 +6,8 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Rooms
-                <a href="{{url('admin/room/create')}}" class="btn btn-primary float-right">Add New</a>
+            <h6 class="m-0 font-weight-bold text-primary">List of Costumers
+                <a href="{{url('admin/costumer/create')}}" class="btn btn-primary float-right">Add New</a>
             </h6>
         </div>
         <div class="card-body">
@@ -19,16 +19,18 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Room Type</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Room Type</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -37,12 +39,13 @@
                         @foreach ($data as $dat)
                             <tr>
                                 <td>{{$dat->id}}</td>
-                                <td>{{$dat->title}}</td>
-                                <td>{{$dat->roomtype->title}}</td>
+                                <td>{{$dat->full_name}}</td>
+                                <td>{{$dat->email}}</td>
+                                <td>{{$dat->mobile}}</td>
                                 <td>
-                                    <a href="{{url('admin/room/'.$dat->id)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
-                                    <a href="{{url('admin/room/'.$dat->id.'/edit')}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                    <a onclick="return confirm('Are you sûre to delete this ?')" href="{{url('admin/room/'.$dat->id.'/delete')}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                    <a href="{{url('admin/costumer/'.$dat->id)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                    <a href="{{url('admin/costumer/'.$dat->id.'/edit')}}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a onclick="return confirm('Are you sûre to delete this ?')" href="{{url('admin/costumer/'.$dat->id.'/delete')}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>  
                         @endforeach
