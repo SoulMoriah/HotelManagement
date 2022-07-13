@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Costumer;
+use App\Models\Booking;
 
 class BookingController extends Controller
 {
@@ -36,7 +38,25 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request ->validate([
+            'costumer_id'=>'required',
+            'room_id'=>'required',
+            'checkin_date'=>'required',
+            'checkout_date'=>'required',
+            'total_adults'=>'required',
+
+        ]);
+
+        $data= new Booking;
+        $data->costumer_id = $request->costumer_id;
+        $data->room_id = $request->room_id;
+        $data->checkin_date = $request->checkin_date;
+        $data->checkout_date = $request->checkout_date;
+        $data->total_adults = $request->total_adults;
+        $data->total_children = $request->total_children;
+        
+        $data->save();
+        return redirect()->back()->with('success','data added succeffuly');
     }
 
     /**
@@ -82,5 +102,12 @@ class BookingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // chekin available rooms
+    function available_rooms(Request $request, $checkin_date)
+    {
+        $arooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date)");
+        return response()->json(['data'=>$arooms]);
     }
 }

@@ -30,9 +30,10 @@ Route::post('admin/login', [AdminController::class,'check_login']);
 Route::get('admin/logout', [AdminController::class,'logout']);
 
 //admin dashboard
-Route::get('admin', function () {
+Route::get('admin', [AdminController::class,'dashboard']);
+/*Route::get('admin', function () {
     return view('dashboard');
-});
+});*/
 
 //Room type routes
 Route::resource('admin/roomtype',RoomtypeController::class);
@@ -73,4 +74,5 @@ Route::resource('admin/staff',StaffController::class);
 
 //Booking routes
 Route::get('admin/booking/{id}/delete',[BookingController::class,'destroy']);
+Route::get('admin/booking/available-rooms/{checkin_date}',[BookingController::class,'available_rooms']);
 Route::resource('admin/booking',BookingController::class);

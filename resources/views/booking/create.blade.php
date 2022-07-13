@@ -27,7 +27,7 @@
                     <table class="table table-bordered" >
                         <tr>
                             <th>Select the Costumer<span class="text-danger">*</span></th>
-                            <td><select class="form-control">
+                            <td><select class="form-control" name="costumer_id">
                                 <option>------Select the Costumer-------</option>
                                 @foreach($data as $costumer)
                                     <option value="{{$costumer->id}}">{{$costumer->full_name}}</option>
@@ -36,7 +36,7 @@
                         </tr>
                         <tr>
                             <th>ChekIn Date<span class="text-danger">*</span></th>
-                            <td><input type="date" name="checkin_date" value="" class="form-control"></td>
+                            <td><input type="date" name="checkin_date" value="" class="form-control checkin-date"></td>
                         </tr>
                         <tr>
                             <th>ChekOut Date<span class="text-danger">*</span></th>
@@ -52,9 +52,9 @@
                         </tr>
                         <tr>
                             <th>Available Rooms<span class="text-danger">*</span></th>
-                            <td><select class="form-control room">
+                            <td><select class="form-control room-list" name="room_id">
                                 <option>------Select the Room-------</option>
-                                
+
                             </select></td>
                         </tr>
                         <tr>
@@ -70,6 +70,28 @@
 
 </div>
 <!-- /.container-fluid -->
-
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".checkin-date").on('blur',function(){
+            var _checkindate=$(this).val();
+            $.ajax({
+                url:"{{url('admin/booking')}}/available-rooms/"+_checkindate,
+                dataType:'json',
+                beforeSend:function(){
+                    $(".room-list").html('<option>--- Loading ---</option>');
+                },
+                success:function(res){
+                    var _html='';
+                    $.each(res.data, function(index,row){
+                        _html+='<option value="'+row.id+'">'+row.title+'</option>';
+                    });
+                    $(".room-list").html(_html);
+                }
+            });
+        });
+    });
+</script>
+@endsection
 
 @endsection
