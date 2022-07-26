@@ -9,6 +9,9 @@ use App\Http\Controllers\StaffDepartement;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\BookingController;
 
+use App\Http\Controllers\HomeController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +23,7 @@ use App\Http\Controllers\BookingController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class,'home']);
 
 //admin login
 Route::get('admin/login', [AdminController::class,'login']);
