@@ -77,3 +77,11 @@ Route::resource('admin/staff',StaffController::class);
 Route::get('admin/booking/{id}/delete',[BookingController::class,'destroy']);
 Route::get('admin/booking/available-rooms/{checkin_date}',[BookingController::class,'available_rooms']);
 Route::resource('admin/booking',BookingController::class);
+
+//Costumer front 
+Route::get('login', [CostumerController::class,'login']);
+Route::get('logout', [CostumerController::class,'logout']);
+Route::post('costumer/login', [CostumerController::class,'costumer_login']);
+Route::get('register', [CostumerController::class,'register']);
+
+Route::get('booking', [BookingController::class,'front_booking']);

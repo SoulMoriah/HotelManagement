@@ -143,4 +143,35 @@ class CostumerController extends Controller
         $data -> delete();
         return redirect()->back()->with('success','data deleted succeffuly');
     }
+
+    //login
+    function login(){
+        return view('frontlogin');
+    }
+    //check costumer login
+    function costumer_login(Request $request){
+        $email=$request->email;
+        $pwd=sha1($request->password);
+        $detail=Costumer::where(['email'=>$email,'password'=>$pwd])->count();
+        if($detail>0){
+            $data=Costumer::where(['email'=>$email,'password'=>$pwd])->get();
+            session(['costumerlogin'=>true,'data'=>$data]);
+            return redirect('/');
+        }else{
+            return redirect()->back()->with('error','Invalid Mail and/or Password');
+        }
+    }
+
+    //register
+    function register(){
+        return view('register');
+    }
+
+    //logout
+    function logout(){
+        session()->forget(['costumerlogin','data']);
+        return redirect('/');
+    }
+
+    
 }

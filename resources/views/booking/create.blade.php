@@ -22,7 +22,7 @@
                 <p class="text-success">{{session('success')}}</p>
             @endif
             <div class="table-responsive">
-                <form method="POST" enctype="multipart/form-data" action="{{url('admin/booking')}}">
+                <form method="POST" action="{{url('admin/booking')}}">
                     @csrf
                     <table class="table table-bordered" >
                         <tr>
@@ -84,7 +84,7 @@
                 success:function(res){
                     var _html='';
                     $.each(res.data, function(index,row){
-                        _html+='<option value="'+row.id+'">'+row.title+'</option>';
+                        _html+='<option value="'+row.room.id+'">'+row.room.title+' - '+row.roomtype.title+'</option>';
                     });
                     $(".room-list").html(_html);
                 }
